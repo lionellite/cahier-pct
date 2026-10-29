@@ -94,7 +94,7 @@ def call_gemini(system, user):
             "contents": [{"role": "user", "parts": [{"text": user}]}],
             "generationConfig": {"maxOutputTokens": 3000},
         },
-        timeout=(10, 90),
+        timeout=(10, 45),
     )
     response.raise_for_status()
     payload = response.json()
@@ -109,7 +109,7 @@ def call_anthropic(system, user):
         ANTHROPIC_URL,
         headers={"x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01", "content-type": "application/json"},
         json={"model": ANTHROPIC_MODEL, "max_tokens": 3000, "system": system, "messages": [{"role": "user", "content": user}]},
-        timeout=(10, 90),
+        timeout=(10, 45),
     )
     response.raise_for_status()
     payload = response.json()

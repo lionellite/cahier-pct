@@ -24,6 +24,10 @@ python app.py
 
 Ouvrez http://localhost:5000. En déploiement WSGI, utilisez `gunicorn app:app` et configurez `GEMINI_API_KEY` dans les secrets de l’hébergeur, pas dans un fichier versionné. Le modèle est modifiable avec `GEMINI_MODEL`. Si aucune clé Gemini n’est fournie, l’application accepte encore `ANTHROPIC_API_KEY` en solution de repli, mais Anthropic est payant à l’usage.
 
+## Déploiement Vercel
+
+Le dépôt est configuré pour Flask sur les fonctions Python Vercel (`vercel.json`, `.python-version`). Après liaison du dépôt `lionellite/cahier-pct` dans Vercel, définir `GEMINI_API_KEY` dans **Project Settings → Environment Variables** pour Production et Preview, puis déclencher un nouveau déploiement. Ne pas ajouter la clé dans GitHub, `vercel.json` ou le frontend. Le runtime Flask conserve `templates/` et `data/corpus.json` à côté de `app.py`.
+
 ### Données et confidentialité
 
 Le quota gratuit de Gemini peut permettre à Google d’utiliser les entrées et réponses pour améliorer ses produits, et des évaluateurs humains peuvent les examiner. N’envoyez pas de renseignements personnels, sensibles ou confidentiels. La clé API est transmise uniquement du serveur à Google via HTTPS. Une réponse générée reste à vérifier avant utilisation pédagogique.
