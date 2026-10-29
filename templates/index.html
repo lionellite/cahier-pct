@@ -1,293 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cahier PCT — Assistant enseignant</title>
-<style>
-  :root {
-    --bg-board: #1C2B27;
-    --bg-board-2: #16211D;
-    --paper: #F6F1E4;
-    --paper-line: rgba(32,48,43,0.14);
-    --ink: #20302B;
-    --ink-soft: #4A5A54;
-    --chalk: #EDEAE0;
-    --chalk-soft: #B9C4BE;
-    --ochre: #C98A3A;
-    --ochre-deep: #A56C24;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    background: var(--bg-board);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    color: var(--ink);
-  }
-  .app {
-    max-width: 640px;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  header {
-    background: linear-gradient(180deg, var(--bg-board) 0%, var(--bg-board-2) 100%);
-    padding: 28px 20px 40px;
-    position: relative;
-  }
-  header .eyebrow {
-    color: var(--chalk-soft);
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    margin: 0 0 6px;
-  }
-  header h1 {
-    font-family: Georgia, "Times New Roman", ui-serif, serif;
-    color: var(--chalk);
-    font-size: 30px;
-    font-weight: 400;
-    margin: 0 0 8px;
-    letter-spacing: 0.01em;
-  }
-  header p.sub {
-    color: var(--chalk-soft);
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0;
-    max-width: 46ch;
-  }
-  .chalk-dust {
-    position: absolute;
-    right: 20px;
-    top: 26px;
-    font-size: 12px;
-    color: var(--ochre);
-    border: 1px solid rgba(201,138,58,0.5);
-    padding: 4px 10px;
-    border-radius: 100px;
-  }
-  main {
-    background: var(--paper);
-    border-radius: 20px 20px 0 0;
-    margin-top: -18px;
-    flex: 1;
-    padding: 22px 18px 40px;
-    box-shadow: 0 -6px 24px rgba(0,0,0,0.18);
-  }
-  .tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--paper-line);
-  }
-  .tab {
-    flex: 1;
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: 13px;
-    color: var(--ink-soft);
-    padding: 10px 4px 12px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  .tab.active {
-    color: var(--ink);
-    border-bottom-color: var(--ochre);
-    font-weight: 600;
-  }
-  label.field-label {
-    display: block;
-    font-size: 13px;
-    color: var(--ink-soft);
-    margin-bottom: 8px;
-  }
-  textarea {
-    width: 100%;
-    min-height: 88px;
-    resize: vertical;
-    font-family: inherit;
-    font-size: 15px;
-    color: var(--ink);
-    background: #fff;
-    border: 1px solid var(--paper-line);
-    border-radius: 10px;
-    padding: 12px 14px;
-    line-height: 1.5;
-  }
-  textarea:focus {
-    outline: 2px solid var(--ochre);
-    outline-offset: 1px;
-  }
-  .row-extra {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
-  }
-  .row-extra select, .row-extra input[type=number] {
-    font-family: inherit;
-    font-size: 13px;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 1px solid var(--paper-line);
-    background: #fff;
-    color: var(--ink);
-  }
-  button.submit {
-    margin-top: 16px;
-    width: 100%;
-    background: var(--ochre);
-    color: #fff;
-    border: none;
-    padding: 13px 16px;
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  button.submit:hover { background: var(--ochre-deep); }
-  button.submit:disabled { background: #cbb99a; cursor: default; }
-
-  .result {
-    margin-top: 26px;
-  }
-  .result-card {
-    background: #fff;
-    border-left: 3px solid var(--ochre);
-    border-radius: 4px 10px 10px 4px;
-    padding: 16px 18px;
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--ink);
-    white-space: pre-wrap;
-  }
-  .result-meta {
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-bottom: 8px;
-  }
-  .loading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--ink-soft);
-    font-size: 14px;
-    margin-top: 22px;
-  }
-  .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--ochre);
-    animation: pulse 1.1s infinite ease-in-out;
-  }
-  .dot:nth-child(2) { animation-delay: 0.15s; }
-  .dot:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes pulse {
-    0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
-    40% { opacity: 1; transform: scale(1.1); }
-  }
-  .error {
-    margin-top: 22px;
-    background: #FBEAE0;
-    border: 1px solid #E3A67C;
-    color: #7A3B10;
-    padding: 12px 14px;
-    border-radius: 8px;
-    font-size: 13.5px;
-  }
-  footer {
-    text-align: center;
-    font-size: 11.5px;
-    color: var(--ink-soft);
-    opacity: 0.7;
-    padding: 18px 0 4px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .dot { animation: none; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153d35">
+  <meta name="description" content="Assistant pédagogique PCT pour les enseignants de 3e au Bénin, ancré dans le programme officiel certifié.">
+  <title>Cahier PCT — votre atelier pédagogique</title>
+  <style>
+    :root{--forest:#153d35;--forest2:#1d5146;--leaf:#2f7962;--gold:#c99543;--gold-light:#f4e4c2;--paper:#f7f5ef;--white:#fff;--ink:#182b26;--muted:#71817b;--line:#e6e9e3;--soft:#eff3ee;--shadow:0 18px 55px rgba(26,53,44,.09);--radius:22px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}button,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit}.shell{min-height:100vh;display:grid;grid-template-columns:264px minmax(0,1fr);max-width:1600px;margin:0 auto}
+    .rail{background:var(--forest);color:#f5f5ec;padding:28px 19px 20px;display:flex;flex-direction:column;min-height:100vh;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;padding:1px 9px 31px}.brand-mark{width:40px;height:40px;background:var(--gold);border-radius:14px;display:grid;place-items:center;color:var(--forest);box-shadow:0 7px 18px #102e2880}.brand-mark svg{width:23px;height:23px}.brand-name{font-family:Georgia,serif;font-size:19px;letter-spacing:-.3px}.brand-sub{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#adc3b9;margin-top:1px}.rail-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#9bb4a9;font-weight:700;padding:0 11px;margin:0 0 10px}.nav-list{display:grid;gap:6px}.nav-item{width:100%;border:0;background:transparent;color:#d3e0d9;text-align:left;padding:11px 12px;border-radius:12px;display:flex;align-items:center;gap:11px;font-size:13px;transition:.18s}.nav-item svg{width:17px;height:17px;opacity:.9}.nav-item:hover,.nav-item.active{background:#ffffff16;color:white}.nav-item.active{box-shadow:inset 3px 0 var(--gold)}.rail-divider{height:1px;background:#ffffff1b;margin:23px 4px}.examples{display:grid;gap:6px}.example-btn{border:0;background:none;color:#c2d1ca;padding:8px 10px;text-align:left;font-size:12px;border-radius:9px;line-height:1.4}.example-btn:hover{background:#ffffff12;color:white}.rail-spacer{flex:1}.source-mini{border:1px solid #ffffff23;border-radius:15px;padding:14px;background:#ffffff0c}.source-mini-top{display:flex;align-items:center;gap:8px;font-size:11px;color:#f4eee0;font-weight:650}.source-mini-top svg{width:16px;color:var(--gold)}.source-mini p{margin:8px 0 0;color:#a9c0b5;font-size:11px;line-height:1.55}.rail-foot{padding:18px 10px 0;color:#91aa9f;font-size:10px}
+    .main{min-width:0;padding:0 44px 60px}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:12px}.breadcrumb{font-size:12px;color:var(--muted)}.breadcrumb strong{color:var(--ink);font-weight:650}.top-actions{display:flex;align-items:center;gap:12px}.status-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:11px;font-weight:650;color:#50635b}.status-dot{width:7px;height:7px;border-radius:50%;background:#d4a24b;box-shadow:0 0 0 3px #f5ecd9}.status-pill.ready .status-dot{background:#399272;box-shadow:0 0 0 3px #d8ede3}.help-link{border:0;background:transparent;color:var(--forest2);font-size:12px;font-weight:700;padding:8px 0;text-decoration:none}.help-link:hover{text-decoration:underline}.content{max-width:1000px;margin:0 auto}.intro{padding:35px 0 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}.kicker{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:750;text-transform:uppercase;letter-spacing:1.4px;color:#9c6c25}.kicker:before{content:"";width:19px;height:1px;background:var(--gold)}h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(29px,4vw,42px);letter-spacing:-1.35px;line-height:1.13;margin:11px 0 9px;color:#183c33}.intro p{margin:0;color:#687a72;font-size:13px;max-width:580px}.grade-chip{white-space:nowrap;align-self:flex-start;border:1px solid #e7dcc6;background:#fffaf0;color:#84602d;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:700}.workspace{background:var(--white);border:1px solid #eceee8;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.mode-tabs{padding:9px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px;background:#fbfcfa;border-bottom:1px solid var(--line)}.mode-tab{border:1px solid transparent;background:transparent;border-radius:13px;padding:12px 13px;text-align:left;display:flex;align-items:center;gap:11px;color:#67766f;transition:.18s}.mode-tab:hover{background:#f2f5f1}.mode-tab[aria-selected="true"]{background:white;border-color:#e7ebe5;box-shadow:0 3px 9px #163d3510;color:var(--forest)}.mode-icon{width:34px;height:34px;display:grid;place-items:center;background:var(--soft);border-radius:11px;color:var(--leaf);flex:0 0 auto}.mode-tab[aria-selected="true"] .mode-icon{background:#e4efe8;color:var(--forest)}.mode-icon svg{width:18px;height:18px}.mode-name{font-size:12px;font-weight:750;display:block}.mode-desc{font-size:10px;color:#8b9791;display:block;margin-top:2px}.form-panel{padding:24px 28px 23px}.field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.field-head label{font-size:12px;font-weight:750;color:#283e36}.char-count{font-size:10px;color:#98a39d}.input-wrap{position:relative}.query-box{width:100%;min-height:117px;max-height:260px;resize:vertical;border:1px solid #dfe5df;border-radius:15px;padding:15px 16px;color:var(--ink);font-size:14px;line-height:1.65;background:#fff;outline:none;transition:border .2s,box-shadow .2s}.query-box::placeholder{color:#a3ada7}.query-box:focus{border-color:#78a590;box-shadow:0 0 0 4px #e8f1eb}.form-bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:15px}.option-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.field-select,.number-input{border:1px solid #e2e7e1;background:#fbfcfa;border-radius:10px;color:#53645c;padding:9px 11px;font-size:11px;outline:none}.field-select:focus,.number-input:focus{border-color:#82a995}.number-input{width:73px}.generate-btn{border:0;background:var(--forest);color:#fff;border-radius:12px;padding:12px 17px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:12px;font-weight:750;min-width:164px;box-shadow:0 7px 16px #153d3522;transition:transform .17s,background .17s}.generate-btn:hover{background:#205449;transform:translateY(-1px)}.generate-btn:disabled{opacity:.58;cursor:wait;transform:none}.generate-btn svg{width:16px;height:16px}.privacy-note{border-top:1px solid #f0f1ed;background:#fcfcfa;padding:12px 28px;display:flex;gap:8px;align-items:flex-start;color:#78857f;font-size:10px;line-height:1.5}.privacy-note svg{width:14px;height:14px;flex:0 0 auto;color:#9b793f;margin-top:1px}.privacy-note strong{color:#5e6b65}.suggestions{padding:19px 3px 0}.suggestion-head{display:flex;align-items:center;gap:8px;color:#738078;font-size:11px;font-weight:700;margin-bottom:10px}.suggestion-head svg{width:15px;color:var(--gold)}.suggestion-list{display:flex;gap:8px;flex-wrap:wrap}.suggestion{border:1px solid #e6e9e3;background:#fff;color:#52625b;border-radius:999px;padding:8px 12px;font-size:10px;transition:.18s}.suggestion:hover{border-color:#b4c8ba;color:var(--forest);background:#f8fbf8}
+    .notice{margin-top:20px;padding:13px 15px;border-radius:13px;display:flex;align-items:flex-start;gap:10px;font-size:11px;line-height:1.5}.notice svg{width:17px;height:17px;flex:0 0 auto}.notice.info{color:#725526;background:#fbf5e8;border:1px solid #eee1c7}.notice.setup{color:#5e5544;background:#fff8ec;border:1px solid #ebd9b8}.notice[hidden]{display:none!important}.notice a{font-weight:750;color:#725526}.result-area{margin-top:25px}.result-area:empty{display:none}.result-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:11px}.result-label{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#8a6b39;font-weight:800}.result-tools{display:flex;gap:8px}.tool-btn{background:white;border:1px solid var(--line);border-radius:9px;color:#5e6e66;padding:7px 10px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:6px}.tool-btn:hover{background:#f7f9f6}.tool-btn svg{width:13px;height:13px}.answer-card{background:white;border:1px solid #e8ece6;border-radius:17px;padding:23px 25px;box-shadow:0 7px 22px #193f3308}.answer-copy{white-space:pre-wrap;font-size:13px;line-height:1.8;color:#31443b}.answer-sources{margin-top:19px;border-top:1px solid #edf0eb;padding-top:14px}.answer-sources summary{cursor:pointer;color:#536c5f;font-size:11px;font-weight:750}.source-chips{display:flex;flex-wrap:wrap;gap:7px;padding-top:11px}.source-chip{border:1px solid #e6ebe5;background:#f9fbf8;border-radius:8px;padding:6px 9px;color:#586a60;font-size:10px}.loading-card{padding:20px;background:white;border:1px solid var(--line);border-radius:15px;display:flex;align-items:center;gap:12px;color:#687a72;font-size:12px}.spinner{width:17px;height:17px;border:2px solid #e6eadf;border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.error-card{margin-top:18px;padding:12px 14px;color:#874534;background:#fff4f0;border:1px solid #f1d6cb;border-radius:12px;font-size:11px;line-height:1.5}.page-foot{padding:26px 0;color:#99a39d;font-size:10px;display:flex;justify-content:space-between;gap:10px}.mobile-brand{display:none}
+    .modal-backdrop{position:fixed;inset:0;background:#102d27aa;display:grid;place-items:center;padding:18px;z-index:10}.modal-backdrop[hidden]{display:none}.modal{width:min(470px,100%);border-radius:20px;background:white;padding:25px;box-shadow:0 25px 70px #0003;position:relative}.modal h2{font:500 24px Georgia,serif;color:var(--forest);margin:4px 0 10px}.modal p,.modal li{font-size:12px;color:#63746b;line-height:1.65}.modal ol{padding-left:20px}.modal-close{position:absolute;top:13px;right:14px;border:0;background:#f2f5f2;width:32px;height:32px;border-radius:50%;font-size:18px;color:#52645b}.modal-cta{display:inline-flex;text-decoration:none;color:white;background:var(--forest);border-radius:10px;padding:11px 14px;font-size:11px;font-weight:750}.modal-warning{background:#fcf5e9;border:1px solid #efe1c7;border-radius:11px;padding:12px;margin:15px 0;color:#715522!important}
+    @media(max-width:1040px){.main{padding-left:30px;padding-right:30px}.shell{grid-template-columns:230px minmax(0,1fr)}.mode-tab{padding:10px}.mode-desc{display:none}}
+    @media(max-width:760px){.shell{display:block}.rail{display:none}.main{padding:0 17px 30px}.topbar{height:61px}.mobile-brand{display:flex;align-items:center;gap:8px;font-family:Georgia,serif;color:var(--forest);font-size:16px}.mobile-brand .brand-mark{width:30px;height:30px;border-radius:10px}.mobile-brand .brand-mark svg{width:17px}.breadcrumb{display:none}.top-actions{gap:10px}.status-pill{font-size:0;padding:9px}.status-pill .status-dot{width:8px;height:8px}.help-link{font-size:11px}.intro{padding:26px 0 18px;display:block}.intro h1{font-size:34px}.grade-chip{display:inline-flex;margin-top:15px}.workspace{border-radius:18px}.mode-tabs{padding:7px;gap:4px}.mode-tab{padding:9px 6px;justify-content:center;gap:7px;border-radius:11px}.mode-icon{width:29px;height:29px;border-radius:9px}.mode-icon svg{width:16px}.mode-name{font-size:10px}.form-panel{padding:19px 16px}.query-box{min-height:125px;font-size:13px}.form-bottom{align-items:stretch;flex-direction:column}.option-row{min-height:38px}.generate-btn{width:100%;min-height:45px}.privacy-note{padding:11px 16px}.suggestions{padding-top:17px}.suggestion{font-size:10px;padding:7px 10px}.answer-card{padding:18px 16px}.page-foot{display:block;line-height:1.8}.page-foot span{display:block}.result-top{align-items:flex-start}.result-tools{flex-shrink:0}}
+    @media(max-width:390px){.mode-tab{flex-direction:column;gap:4px}.mode-name{font-size:9px}.status-pill{display:none}.intro h1{font-size:31px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
 </head>
 <body>
-<div class="app">
-  <header>
-    <p class="eyebrow">Programme officiel PCT · Classe de 3ème · Bénin</p>
-    <h1>Cahier PCT</h1>
-    <p class="sub">Un carnet numérique fondé sur le programme certifié, pour préparer un cours, une fiche ou une évaluation sans le rouvrir page par page.</p>
-    <span class="chalk-dust">32 extraits officiels</span>
-  </header>
-  <main>
-    <div class="tabs" role="tablist" aria-label="Mode de travail">
-      <button class="tab active" data-mode="question" role="tab" aria-selected="true">Question</button>
-      <button class="tab" data-mode="fiche" role="tab" aria-selected="false">Fiche de cours</button>
-      <button class="tab" data-mode="exercices" role="tab" aria-selected="false">Exercices</button>
+<div class="shell">
+  <aside class="rail" aria-label="Navigation principale">
+    <a class="brand" href="#accueil" aria-label="Cahier PCT, accueil">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5c2.5-1 4.8-.5 7 1.2v14c-2.2-1.7-4.5-2.2-7-1.2z"/><path d="M19 4.5c-2.5-1-4.8-.5-7 1.2v14c2.2-1.7 4.5-2.2 7-1.2z"/><path d="M8 8h1.5M15 8h1.5"/></svg></span>
+      <span><span class="brand-name">Cahier PCT</span><span class="brand-sub">Atelier enseignant</span></span>
+    </a>
+    <p class="rail-label">Votre espace</p>
+    <nav class="nav-list">
+      <button class="nav-item active" data-nav="question" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v9a2.5 2.5 0 0 1-2.5 2.5H9l-5 4z"/><path d="M8 8h8M8 12h5"/></svg>Poser une question</button>
+      <button class="nav-item" data-nav="fiche" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3h8l4 4v14H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M15 3v5h5M9 12h7M9 16h7"/></svg>Préparer une séance</button>
+      <button class="nav-item" data-nav="exercices" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h14v16H5z"/><path d="m8 9 1.5 1.5L12 8M14 9h2M8 15h8"/></svg>Créer une évaluation</button>
+    </nav>
+    <div class="rail-divider"></div>
+    <p class="rail-label">Pour commencer</p>
+    <div class="examples">
+      <button class="example-btn" data-prompt="Quels sont les critères d’évaluation pour élaborer une explication d’un phénomène ?">Les critères d’évaluation officiels</button>
+      <button class="example-btn" data-prompt="Quelles sont les étapes de la démarche d’apprentissage en PCT ?">Les étapes de la démarche PCT</button>
+      <button class="example-btn" data-prompt="Quels thèmes de chimie sont prévus dans les situations d’apprentissage de 3e ?">Les thèmes des situations d’apprentissage</button>
     </div>
-
-    <div id="form-area">
-      <label class="field-label" id="field-label">Pose ta question sur le programme</label>
-      <textarea id="input-text" maxlength="1200" placeholder="Ex. Quels sont les critères d'évaluation pour formuler une explication d'un phénomène ?"></textarea>
-      <div class="row-extra" id="extra-fiche" style="display:none;">
-        <select id="fiche-duree">
-          <option value="55 minutes">Séance de 55 min</option>
-          <option value="110 minutes">Séance double (110 min)</option>
-        </select>
-      </div>
-      <div class="row-extra" id="extra-exercices" style="display:none;">
-        <input type="number" id="ex-nombre" min="1" max="10" value="4" style="width:70px;">
-        <select id="ex-type">
-          <option value="questions à réponse courte">Questions courtes</option>
-          <option value="exercices avec situation-problème">Situations-problèmes</option>
-          <option value="QCM">QCM</option>
-        </select>
-      </div>
-      <button class="submit" id="submit-btn">Répondre</button>
+    <div class="rail-spacer"></div>
+    <div class="source-mini"><div class="source-mini-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 1 4 16.5z"/><path d="M4 16a2 2 0 0 1 2-2h14M8 7h8M8 10h6"/></svg>Votre base documentaire</div><p>Programme officiel PCT, classe de 3e<br>Version certifiée · 2020<br>32 extraits indexés</p></div>
+    <div class="rail-foot">Un outil d’appui à la préparation pédagogique.</div>
+  </aside>
+  <main class="main" id="accueil">
+    <header class="topbar">
+      <div class="mobile-brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4.5c2.5-1 4.8-.5 7 1.2v14c-2.2-1.7-4.5-2.2-7-1.2z"/><path d="M19 4.5c-2.5-1-4.8-.5-7 1.2v14c2.2-1.7 4.5-2.2 7-1.2z"/></svg></span>Cahier PCT</div>
+      <div class="breadcrumb">Espace enseignant <span aria-hidden="true">/</span> <strong>Préparation pédagogique</strong></div>
+      <div class="top-actions"><span class="status-pill" id="status-pill"><i class="status-dot"></i><span id="status-text">Vérification du service</span></span><button class="help-link" id="help-open" type="button">Configurer l’accès IA ↗</button></div>
+    </header>
+    <div class="content">
+      <section class="intro">
+        <div><span class="kicker">Le programme, à portée de main</span><h1>Préparez mieux.<br>Enseignez avec confiance.</h1><p>Posez une question, bâtissez votre séance ou créez une évaluation à partir du programme officiel de PCT au Bénin.</p></div>
+        <span class="grade-chip">BÉNIN &nbsp;·&nbsp; CLASSE DE 3ᵉ</span>
+      </section>
+      <section class="workspace" aria-label="Assistant pédagogique">
+        <div class="mode-tabs" role="tablist" aria-label="Choisir un outil">
+          <button class="mode-tab" id="tab-question" role="tab" aria-selected="true" data-mode="question" type="button"><span class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v9a2.5 2.5 0 0 1-2.5 2.5H9l-5 4z"/><path d="M8 8h8M8 12h5"/></svg></span><span><span class="mode-name">Question</span><span class="mode-desc">Interroger le programme</span></span></button>
+          <button class="mode-tab" id="tab-fiche" role="tab" aria-selected="false" data-mode="fiche" type="button"><span class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h8l4 4v14H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M15 3v5h5M9 12h7M9 16h7"/></svg></span><span><span class="mode-name">Fiche de cours</span><span class="mode-desc">Structurer une séance</span></span></button>
+          <button class="mode-tab" id="tab-exercices" role="tab" aria-selected="false" data-mode="exercices" type="button"><span class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="m8 9 1.5 1.5L12 8M14 9h2M8 15h8"/></svg></span><span><span class="mode-name">Exercices</span><span class="mode-desc">Évaluer les acquis</span></span></button>
+        </div>
+        <div class="form-panel">
+          <div class="field-head"><label id="field-label" for="input-text">Que souhaitez-vous éclaircir dans le programme ?</label><span id="char-count" class="char-count">0 / 1 200</span></div>
+          <textarea id="input-text" class="query-box" maxlength="1200" placeholder="Ex. Quels sont les critères d’évaluation pour formuler une explication d’un phénomène ?" aria-describedby="privacy-note"></textarea>
+          <div class="form-bottom"><div class="option-row" id="options-area"></div><button class="generate-btn" id="submit-btn" type="button"><span>Rechercher dans le programme</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
+        </div>
+        <div class="privacy-note" id="privacy-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 19 6v5c0 4.5-2.9 7.9-7 10-4.1-2.1-7-5.5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg><span><strong>Réponses ancrées dans le programme.</strong> Le service IA traite votre demande et les extraits pertinents pour générer la réponse. Évitez de saisir des informations personnelles ou confidentielles.</span></div>
+      </section>
+      <div id="setup-notice" class="notice setup" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span><strong>Connexion IA à configurer.</strong> Pour tester gratuitement, créez une clé Gemini AI Studio puis définissez <code>GEMINI_API_KEY</code> dans l’environnement du serveur. <button class="help-link" id="inline-help" type="button">Afficher les étapes</button></span></div>
+      <div id="error-area" aria-live="polite"></div>
+      <section class="result-area" id="result-area" aria-live="polite"></section>
+      <section class="suggestions" id="suggestions-area"><div class="suggestion-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>Quelques pistes pour démarrer</div><div class="suggestion-list"><button class="suggestion" data-prompt="Quels sont les critères d’évaluation pour élaborer une explication d’un phénomène ?">Critères d’évaluation</button><button class="suggestion" data-prompt="Quelles sont les étapes de la démarche d’apprentissage en PCT ?">Démarche d’apprentissage</button><button class="suggestion" data-prompt="Quelles sont les compétences transversales prévues au programme de PCT en 3e ?">Compétences transversales</button><button class="suggestion" data-prompt="Quels sont les thèmes abordés dans la situation d’apprentissage SA1 ?">Situation d’apprentissage SA1</button></div></section>
+      <div class="notice info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 19 6v5c0 4.5-2.9 7.9-7 10-4.1-2.1-7-5.5-7-10V6z"/><path d="M12 8v4M12 16h.01"/></svg><span>Une réponse générée n’est pas une prescription officielle. Vérifiez toujours les références et adaptez votre préparation à votre classe.</span></div>
+      <footer class="page-foot"><span>Programme officiel PCT · Version certifiée 2020</span><span>Un outil d’appui à la pratique enseignante</span></footer>
     </div>
-
-    <div id="loading" class="loading" style="display:none;">
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      <span id="loading-text">Recherche dans le programme…</span>
-    </div>
-
-    <div id="error-area"></div>
-
-    <div id="result-area" class="result"></div>
-
-    <footer>Réponses générées à partir du programme certifié PCT 2020 — à vérifier avant usage en classe.</footer>
   </main>
 </div>
-
+<div class="modal-backdrop" id="help-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal"><button class="modal-close" id="help-close" type="button" aria-label="Fermer">×</button><span class="kicker">Activation en 3 étapes</span><h2 id="modal-title">Tester avec Gemini gratuitement</h2><p>Gemini 3.8 Flash est disponible avec un quota gratuit pour les projets éligibles. La clé API reste sur votre serveur : elle n’est jamais intégrée au navigateur.</p><ol><li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Créez une clé API dans Google AI Studio</a> (connectez-vous avec votre compte Google).</li><li>Dans le terminal de votre projet, copiez <code>.env.example</code> vers <code>.env</code>, puis renseignez <code>GEMINI_API_KEY</code>.</li><li>Redémarrez Flask. Le statut en haut à droite indiquera que l’assistant est prêt.</li></ol><p class="modal-warning"><strong>Important :</strong> sur le quota gratuit, Google peut utiliser les entrées et réponses pour améliorer ses produits, et des évaluateurs humains peuvent les examiner. Ne transmettez aucun renseignement personnel, sensible ou confidentiel.</p><a class="modal-cta" href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Obtenir une clé Gemini ↗</a></div>
+</div>
 <script>
-const MODES = {
-  question: {label:"Pose ta question sur le programme", placeholder:"Ex. Quels sont les critères d'évaluation pour formuler une explication d'un phénomène ?", button:"Répondre", loading:"Recherche dans le programme…"},
-  fiche: {label:"Sur quelle compétence, capacité ou thème veux-tu une fiche ?", placeholder:"Ex. Compétence disciplinaire n°1, capacité 1.3", button:"Générer la fiche", loading:"Rédaction de la fiche…"},
-  exercices: {label:"Sur quelle compétence ou quel thème veux-tu des exercices ?", placeholder:"Ex. Compétence disciplinaire n°2 (objets technologiques)", button:"Générer les exercices", loading:"Préparation des exercices…"}
-};
-let mode="question";
-const $=id=>document.getElementById(id);
-const tabs=document.querySelectorAll(".tab");
-tabs.forEach(tab=>tab.addEventListener("click",()=>{
-  tabs.forEach(t=>{t.classList.remove("active");t.setAttribute("aria-selected","false")});
-  tab.classList.add("active");tab.setAttribute("aria-selected","true");mode=tab.dataset.mode;
-  const cfg=MODES[mode];$("field-label").textContent=cfg.label;$("input-text").placeholder=cfg.placeholder;$("submit-btn").textContent=cfg.button;
-  $("extra-fiche").style.display=mode==="fiche"?"flex":"none";$("extra-exercices").style.display=mode==="exercices"?"flex":"none";$("result-area").replaceChildren();$("error-area").replaceChildren();
-}));
-async function generate(){
-  const query=$("input-text").value.trim(), errors=$("error-area");errors.replaceChildren();
-  if(!query){const e=document.createElement("div");e.className="error";e.textContent="Écris d’abord une question ou un thème.";errors.append(e);return}
-  const button=$("submit-btn"),cfg=MODES[mode];button.disabled=true;$("loading-text").textContent=cfg.loading;$("loading").style.display="flex";$("result-area").replaceChildren();
-  const options={};if(mode==="fiche")options.duree=$("fiche-duree").value;if(mode==="exercices"){options.nombre=Number($("ex-nombre").value);options.type=$("ex-type").value}
-  try{
-    const response=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode,query,options})});
-    const data=await response.json();if(!response.ok)throw new Error(data.error||`Erreur serveur (${response.status})`);
-    const meta=document.createElement("div");meta.className="result-meta";meta.textContent=`Réponse fondée sur le programme officiel PCT 3ème · ${data.sources.length} source(s)`;
-    const card=document.createElement("div");card.className="result-card";card.textContent=data.answer;$("result-area").append(meta,card);
-  }catch(err){const e=document.createElement("div");e.className="error";e.textContent=`${err.message||"Une erreur est survenue."} Réessaie dans un instant.`;errors.append(e)}
-  finally{$("loading").style.display="none";button.disabled=false}
-}
-$("submit-btn").addEventListener("click",generate);
-$("input-text").addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="Enter")generate()});
+(() => {
+  const modes = {
+    question: {label:"Que souhaitez-vous éclaircir dans le programme ?",placeholder:"Ex. Quels sont les critères d’évaluation pour formuler une explication d’un phénomène ?",button:"Rechercher dans le programme",options:""},
+    fiche: {label:"Quelle compétence, capacité ou quel thème souhaitez-vous travailler ?",placeholder:"Ex. Préparer une séance sur la compétence disciplinaire 1, capacité 1.3…",button:"Préparer ma fiche de cours",options:'<select class="field-select" id="duration" aria-label="Durée de la séance"><option value="55 minutes">Séance · 55 min</option><option value="110 minutes">Séance double · 110 min</option></select>'},
+    exercices: {label:"Quelle compétence ou quel thème souhaitez-vous évaluer ?",placeholder:"Ex. Les critères d’évaluation de la compétence disciplinaire 2…",button:"Créer les exercices",options:'<label for="exercise-count" class="char-count">Nombre</label><input id="exercise-count" class="number-input" type="number" min="1" max="10" value="4"><select class="field-select" id="exercise-type" aria-label="Type d’exercice"><option value="questions à réponse courte">Questions courtes</option><option value="exercices avec situation-problème">Situations-problèmes</option><option value="QCM">QCM</option></select>'}
+  };
+  const input=document.getElementById('input-text'), button=document.getElementById('submit-btn'), result=document.getElementById('result-area'), error=document.getElementById('error-area');
+  let mode='question';
+  const iconArrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+  function setMode(next){mode=next;document.querySelectorAll('.mode-tab').forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.mode===mode)));document.querySelectorAll('[data-nav]').forEach(item=>item.classList.toggle('active',item.dataset.nav===mode));const cfg=modes[mode];document.getElementById('field-label').textContent=cfg.label;input.placeholder=cfg.placeholder;document.getElementById('options-area').innerHTML=cfg.options;button.querySelector('span').textContent=cfg.button;button.setAttribute('aria-label',cfg.button);result.replaceChildren();error.replaceChildren();}
+  document.querySelectorAll('.mode-tab').forEach(tab=>tab.addEventListener('click',()=>setMode(tab.dataset.mode)));
+  document.querySelectorAll('[data-nav]').forEach(item=>item.addEventListener('click',()=>{setMode(item.dataset.nav);window.scrollTo({top:0,behavior:'smooth'})}));
+  document.querySelectorAll('[data-prompt]').forEach(item=>item.addEventListener('click',()=>{input.value=item.dataset.prompt;input.dispatchEvent(new Event('input'));input.focus();document.querySelector('.workspace').scrollIntoView({behavior:'smooth',block:'center'})}));
+  input.addEventListener('input',()=>document.getElementById('char-count').textContent=`${input.value.length.toLocaleString('fr-FR')} / 1 200`);
+  async function submit(){
+    error.replaceChildren();result.replaceChildren();const query=input.value.trim();if(!query){showError('Saisissez une question, une compétence ou un thème du programme.');input.focus();return;}
+    const options={};if(mode==='fiche')options.duree=document.getElementById('duration').value;if(mode==='exercices'){options.nombre=Number(document.getElementById('exercise-count').value);options.type=document.getElementById('exercise-type').value;}
+    button.disabled=true;button.querySelector('span').textContent='Recherche des extraits…';
+    const loading=document.createElement('div');loading.className='loading-card';loading.setAttribute('role','status');loading.innerHTML='<span class="spinner"></span><span>Lecture des passages pertinents du programme et préparation de votre réponse…</span>';result.append(loading);
+    try{const response=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode,query,options})});const data=await response.json();if(!response.ok)throw new Error(data.error||`Le serveur a répondu ${response.status}.`);renderAnswer(data);}
+    catch(err){result.replaceChildren();showError(err.message||'Une erreur est survenue. Réessayez.');}
+    finally{button.disabled=false;button.querySelector('span').textContent=modes[mode].button;}
+  }
+  function showError(message){const box=document.createElement('div');box.className='error-card';box.setAttribute('role','alert');box.textContent=message;error.replaceChildren(box);}
+  function renderAnswer(data){result.replaceChildren();const top=document.createElement('div');top.className='result-top';const label=document.createElement('span');label.className='result-label';label.textContent='Votre réponse · '+(data.provider||'Assistant');const tools=document.createElement('div');tools.className='result-tools';const copy=document.createElement('button');copy.className='tool-btn';copy.type='button';copy.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>Copier</span>';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(data.answer);copy.querySelector('span').textContent='Copié';setTimeout(()=>copy.querySelector('span').textContent='Copier',1400)}catch{showError('Copie non autorisée par le navigateur. Sélectionnez le texte pour le copier.')}});const print=document.createElement('button');print.className='tool-btn';print.type='button';print.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v7H7z"/></svg><span>Imprimer</span>';print.addEventListener('click',()=>window.print());tools.append(copy,print);top.append(label,tools);const card=document.createElement('article');card.className='answer-card';const text=document.createElement('div');text.className='answer-copy';text.textContent=data.answer;card.append(text);if(Array.isArray(data.sources)&&data.sources.length){const details=document.createElement('details');details.className='answer-sources';const summary=document.createElement('summary');summary.textContent=`Sources du programme · ${data.sources.length} extrait${data.sources.length>1?'s':''}`;const chips=document.createElement('div');chips.className='source-chips';data.sources.forEach(source=>{const chip=document.createElement('span');chip.className='source-chip';chip.textContent=[source.section,source.subsection].filter(Boolean).join(' · ');chips.append(chip)});details.append(summary,chips);card.append(details)}result.append(top,card);result.scrollIntoView({behavior:'smooth',block:'start'});}
+  button.addEventListener('click',submit);input.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key==='Enter')submit()});
+  const modal=document.getElementById('help-modal');function openHelp(){modal.hidden=false;document.getElementById('help-close').focus()}function closeHelp(){modal.hidden=true;document.getElementById('help-open').focus()}document.getElementById('help-open').addEventListener('click',openHelp);document.getElementById('inline-help').addEventListener('click',openHelp);document.getElementById('help-close').addEventListener('click',closeHelp);modal.addEventListener('click',event=>{if(event.target===modal)closeHelp()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)closeHelp()});
+  async function checkHealth(){try{const response=await fetch('/api/health');const health=await response.json();const pill=document.getElementById('status-pill'),status=document.getElementById('status-text');pill.classList.toggle('ready',health.api_configured);status.textContent=health.api_configured?`Assistant prêt · ${health.provider_name}`:'Clé IA à configurer';document.getElementById('setup-notice').hidden=health.api_configured;}catch{document.getElementById('status-text').textContent='Serveur indisponible';document.getElementById('setup-notice').hidden=false}}
+  checkHealth();
+})();
 </script>
 </body>
 </html>

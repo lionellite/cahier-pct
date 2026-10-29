@@ -22,14 +22,21 @@ class RetrievalTests(unittest.TestCase):
 class ApiTests(unittest.TestCase):
     def setUp(self):
         self.client = pct.app.test_client()
-        self.key = patch.dict(os.environ, {"ANTHROPIC_API_KEY": "test-key"})
-        self.key.start()
-        self.addCleanup(self.key.stop)
 
-    def test_health(self):
-        result = self.client.get("/api/health")
+    def test_health_shows_unconfigured_without_leaking_credentials(self):
+        with patch.dict(os.environ, {}, clear=True):
+            result = self.client.get("/api/health")
         self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.json["corpus_chunks"], 32)
+        self.assertFalse(result.json["api_configured"])
+        self.assertEqual(result.json["provider"], "gemini")
+        self.assertEqual(result.json["model"], "gemini-3.8-flash")
+        self.assertNotIn("key", result.json)
+
+    def test_health_selects_gemini_if_both_providers_configured(self):
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "g-secret", "ANTHROPIC_API_KEY": "a-secret"}):
+            result = self.client.get("/api/health")
+        self.assertEqual(result.json["provider"], "gemini")
+        self.assertNotIn("g-secret", result.get_data(as_text=True))
 
     def test_reject_invalid_mode(self):
         result = self.client.post("/api/generate", json={"mode": "other", "query": "test"})
@@ -39,22 +46,51 @@ class ApiTests(unittest.TestCase):
         result = self.client.post("/api/generate", json={"mode": "question", "query": "x" * 1201})
         self.assertEqual(result.status_code, 400)
 
-    def test_missing_api_key(self):
+    def test_missing_api_key_explains_gemini_setup(self):
         with patch.dict(os.environ, {}, clear=True):
             result = self.client.post("/api/generate", json={"mode": "question", "query": "compétence disciplinaire"})
         self.assertEqual(result.status_code, 503)
+        self.assertIn("GEMINI_API_KEY", result.json["error"])
 
     @patch("app.requests.post")
-    def test_success_passes_only_retrieved_context(self, post):
-        post.return_value = Mock(status_code=200, json=lambda: {"content": [{"type": "text", "text": "Réponse sourcée."}]})
+    def test_gemini_success_uses_server_key_and_returns_sources(self, post):
+        post.return_value = Mock(status_code=200, json=lambda: {"candidates": [{"content": {"parts": [{"text": "Réponse Gemini sourcée."}]}}]})
         post.return_value.raise_for_status.return_value = None
-        result = self.client.post("/api/generate", json={"mode": "question", "query": "compétence disciplinaire"})
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "test-secret"}, clear=True):
+            result = self.client.post("/api/generate", json={"mode": "question", "query": "compétence disciplinaire"})
         self.assertEqual(result.status_code, 200)
-        self.assertEqual(result.json["answer"], "Réponse sourcée.")
+        self.assertEqual(result.json["answer"], "Réponse Gemini sourcée.")
+        self.assertEqual(result.json["provider"], "Gemini 3.8 Flash")
         self.assertGreater(len(result.json["sources"]), 0)
-        sent = post.call_args.kwargs["json"]["messages"][0]["content"]
-        self.assertIn("EXTRAITS DU PROGRAMME OFFICIEL", sent)
-        self.assertNotIn("orientations_generales", sent[:80])
+        self.assertNotIn("test-secret", result.get_data(as_text=True))
+        self.assertNotIn("test-secret", post.call_args.args[0])
+        self.assertEqual(post.call_args.kwargs["headers"]["x-goog-api-key"], "test-secret")
+        self.assertIn("EXTRAITS DU PROGRAMME OFFICIEL", post.call_args.kwargs["json"]["contents"][0]["parts"][0]["text"])
+
+    @patch("app.requests.post")
+    def test_anthropic_fallback_still_works(self, post):
+        post.return_value = Mock(status_code=200, json=lambda: {"content": [{"type": "text", "text": "Réponse Claude."}]})
+        post.return_value.raise_for_status.return_value = None
+        with patch.dict(os.environ, {"ANTHROPIC_API_KEY": "test-secret"}, clear=True):
+            result = self.client.post("/api/generate", json={"mode": "question", "query": "compétence disciplinaire"})
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(result.json["provider"], "Claude")
+
+    @patch("app.requests.post")
+    def test_rate_limit_is_explained(self, post):
+        response = Mock(status_code=429)
+        post.return_value.raise_for_status.side_effect = pct.requests.HTTPError(response=response)
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "test-secret"}, clear=True):
+            result = self.client.post("/api/generate", json={"mode": "question", "query": "compétence disciplinaire"})
+        self.assertEqual(result.status_code, 429)
+        self.assertIn("quota gratuit", result.json["error"])
+
+    def test_frontend_does_not_contain_corpus_or_secret(self):
+        result = self.client.get("/")
+        self.assertEqual(result.status_code, 200)
+        self.assertIn(b"Gemini 3.8 Flash", result.data)
+        self.assertNotIn(b"const CORPUS", result.data)
+        self.assertNotIn(b"test-secret", result.data)
 
     def test_unknown_query_returns_no_grounded_answer(self):
         result = self.client.post("/api/generate", json={"mode": "question", "query": "zzzxxyyqqq"})
