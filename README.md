@@ -1,61 +1,32 @@
-# Cahier PCT — version autonome
+# Cahier PCT — assistant RAG enseignant
 
-Application web pour aider les enseignants de PCT (3ème, Bénin) à préparer des cours,
-fiches et exercices à partir du programme officiel certifié 2020.
+Application web mobile pour les enseignants de Physique-Chimie-Technologie (PCT) de 3e au Bénin. Le corpus contient 32 extraits du programme officiel certifié 2020. Les modes Question, Fiche de cours et Exercices récupèrent des extraits pertinents côté serveur et demandent une réponse Claude ancrée dans ces sources.
 
-## Structure
-
-```
-server_app/
-  app.py              -> serveur Flask (garde la clé API en sécurité)
-  templates/index.html -> l'interface (déjà générée, contient le programme officiel)
-  requirements.txt
-  .env.example
-```
-
-## 1. Installer et lancer en local (sur ton PC)
+## Lancer en local
 
 ```bash
-cd server_app
-python3 -m venv venv
-source venv/bin/activate      # sur Windows : venv\Scripts\activate
+python3 -m venv .venv
+source .venv/bin/activate       # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
-
-# Copie .env.example en .env et colle ta vraie clé API dedans
-cp .env.example .env
-# puis édite .env avec ta clé
-
-# Charge la variable d'environnement et lance le serveur
-export $(cat .env | xargs)    # sur Windows, utilise plutôt : set ANTHROPIC_API_KEY=...
-python3 app.py
+export ANTHROPIC_API_KEY="votre-cle"  # ne jamais committer cette clé
+python app.py
 ```
 
-Ouvre ensuite `http://localhost:5000` dans ton navigateur — l'app doit fonctionner
-complètement, y compris les 3 modes (Question / Fiche / Exercices).
+Ouvrir http://localhost:5000. Le serveur écoute le port défini par `PORT` (5000 par défaut). Le modèle est `claude-sonnet-4-6`, ajustable via `ANTHROPIC_MODEL`. L’application ne fonctionne pas en génération sans clé API Anthropic configurée côté serveur; les fonctions `/` et `/api/health` restent utilisables. L’endpoint de santé n’expose pas la clé.
 
-**Ne mets jamais ta vraie clé API dans un fichier que tu partages ou publies sur GitHub.**
-Le fichier `.env` doit rester uniquement sur ta machine ou dans les "variables
-d'environnement" secrètes de ton hébergeur (voir plus bas).
+Pour un déploiement WSGI: `gunicorn app:app`. Ajouter `ANTHROPIC_API_KEY` comme secret d’environnement chez l’hébergeur. Ne jamais placer de clé dans le frontend ou dans Git.
 
-## 2. Déployer gratuitement pour que d'autres enseignants puissent l'utiliser
+## API
 
-Plusieurs hébergeurs ont un plan gratuit suffisant pour ce prototype :
+- `GET /api/health` — état minimal et nombre d’extraits.
+- `POST /api/generate` — JSON `{ "mode": "question|fiche|exercices", "query": "...", "options": {} }`. Les options sont `duree` (55/110 minutes) pour une fiche, et `nombre` (1–10), `type` pour des exercices. Les sources retenues sont renvoyées avec la réponse.
 
-- **Render.com** (recommandé pour débuter) : crée un compte, "New Web Service",
-  connecte ton dépôt GitHub, indique `gunicorn app:app` comme commande de démarrage,
-  et ajoute `ANTHROPIC_API_KEY` dans la section "Environment" — jamais dans le code.
-- **Railway.app** : fonctionnement similaire.
-- **PythonAnywhere** : plan gratuit, bon si Render ne convient pas.
+Le corpus est versionné dans `data/corpus.json`; la sélection lexicale est volontairement légère pour le prototype et ne remplace pas une validation pédagogique. Les sections « Situations d’apprentissage » restent celles de l’extraction existante et comportent les limites décrites dans le cahier des charges.
 
-Dans tous les cas, la clé API se configure comme **variable d'environnement secrète**
-sur la plateforme d'hébergement — jamais écrite en dur dans `app.py` ou `index.html`.
+## Tests
 
-## 3. Ce qui reste à surveiller
+```bash
+python -m unittest discover -p 'tests_*.py' -v
+```
 
-- **Coût** : chaque question envoyée à Claude a un coût (facturation à l'usage sur
-  console.anthropic.com). Pour un usage par quelques enseignants en test, ça reste
-  minime, mais à surveiller si l'usage grandit.
-- **Limite de réponse** : les réponses sont actuellement limitées à 1500 tokens
-  (~1000-1200 mots) — suffisant pour une fiche standard, à ajuster dans `app.py`
-  (`max_tokens`) si besoin de réponses plus longues.
-- **Un seul niveau couvert** : seul le programme PCT 3ème est chargé pour l'instant.
+Les tests couvrent le chargement du corpus, la récupération, la validation et une réponse API simulée; aucun appel payant à Anthropic n’est effectué.
