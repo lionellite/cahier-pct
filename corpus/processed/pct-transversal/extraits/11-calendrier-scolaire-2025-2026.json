@@ -1,0 +1,29 @@
+{
+  "id": "calendrier-scolaire-2025-2026",
+  "level": "tous",
+  "type": "document-transversal",
+  "title": "Calendrier scolaire 2025-2026",
+  "status": "draft",
+  "version": 1,
+  "source": {
+    "document": "Calendrier scolaire 2025-2026",
+    "edition": "2025-2026",
+    "pages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "url": null
+  },
+  "metadata": {
+    "tags": [
+      "document-transversal",
+      "2025-2026"
+    ],
+    "competences": [],
+    "capacites": [],
+    "criteres": []
+  },
+  "content": "[[PAGE 1]]\n\n\n[[PAGE 2]]\n\n\n[[PAGE 3]]\n\n\n[[PAGE 4]]"
+}

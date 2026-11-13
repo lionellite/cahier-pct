@@ -1,0 +1,77 @@
+{
+  "_comment": "Regles de decoupage du programme PCT 3eme (version certifiee 2020). Les motifs sont des expressions regulieres appliquees au texte extrait (insensibles a la casse). L'encodage du PDF extrait est degrade (accents remplaces par des caracteres de remplacement), donc les motifs evitent les lettres accentuees.",
+  "document": {
+    "title": "Programme officiel de Physique-Chimie-Technologie — classe de 3e",
+    "edition": "2020",
+    "pages": 118,
+    "source": "corpus/raw/programme-pct-3e.pdf"
+  },
+  "level": "3e",
+  "discipline": "PCT",
+  "expected_extracts": 8,
+  "sections": [
+    {
+      "id": "3e-orientations-generales",
+      "title": "Orientations generales (Avant-propos)",
+      "type": "orientations-generales",
+      "start": "I\\.\\s*AVANT[-\\s]*PROPOS",
+      "tags": ["orientations", "finalites", "demarche", "avant-propos"]
+    },
+    {
+      "id": "3e-presentation-situations",
+      "title": "Presentation des situations d'apprentissage",
+      "type": "section",
+      "start": "II\\.\\s*PRESENTATION\\s+DES\\s+SITUATIONS",
+      "tags": ["presentation", "situations-dapprentissage", "tableau"]
+    },
+    {
+      "id": "3e-sa1-equilibre-solide",
+      "title": "SA 1 — Equilibre d'un solide et conversion d'energie",
+      "type": "situation-apprentissage",
+      "start": "SITUATION\\s+D[\\s\\uFFFD]*APPRENTISSAGE\\s+N[\\s\\uFFFD]*°?\\s*1\\s*:",
+      "tags": ["mecanique", "equilibre", "energie", "SA1"]
+    },
+    {
+      "id": "3e-sa2-reactions-chimiques",
+      "title": "SA 2 — Quelques reactions chimiques en solution aqueuse",
+      "type": "situation-apprentissage",
+      "start": "SITUATION\\s+D[\\s\\uFFFD]*APPRENTISSAGE\\s+N[\\s\\uFFFD]*°?\\s*2\\s*:",
+      "tags": ["chimie", "reactions", "solution-aqueuse", "SA2"]
+    },
+    {
+      "id": "3e-sa3-energie-electrique",
+      "title": "SA 3 — L'energie electrique, un besoin indispensable",
+      "type": "situation-apprentissage",
+      "start": "SITUATION\\s+D[\\s\\uFFFD]*APPRENTISSAGE\\s+N[\\s\\uFFFD]*°?\\s*3\\s*:",
+      "tags": ["electricite", "energie-electrique", "SA3"]
+    },
+    {
+      "id": "3e-sa4-detecteur-electrolyseur",
+      "title": "SA 4 — Fabrication d'un detecteur de courant et d'un electrolyseur",
+      "type": "situation-apprentissage",
+      "start": "SITUATION\\s+D[\\s\\uFFFD]*APPRENTISSAGE\\s+N[\\s\\uFFFD]*°?\\s*4\\s*:",
+      "tags": ["electricite", "detecteur", "electrolyseur", "SA4"]
+    },
+    {
+      "id": "3e-sa5-combustion-hydrocarbures",
+      "title": "SA 5 — Combustion complete d'hydrocarbures et polymérisation",
+      "type": "situation-apprentissage",
+      "start": "SITUATION\\s+D[\\s\\uFFFD]*APPRENTISSAGE\\s+N[\\s\\uFFFD]*°?\\s*5\\s*:",
+      "tags": ["chimie-organique", "combustion", "hydrocarbures", "polymérisation", "SA5"]
+    },
+    {
+      "id": "3e-sa6-optique",
+      "title": "SA 6 — L'optique au service de l'homme",
+      "type": "situation-apprentissage",
+      "start": "SITUATION\\s+D[\\s\\uFFFD]*APPRENTISSAGE\\s+N[\\s\\uFFFD]*°?\\s*6\\s*:",
+      "tags": ["optique", "SA6"]
+    },
+    {
+      "id": "3e-evaluation-apprentissages",
+      "title": "Evaluation des apprentissages",
+      "type": "critere-evaluation",
+      "start": "III\\.\\s*EVALUATION\\s+DES\\s+APPRENTISSAGES",
+      "tags": ["evaluation", "criteres", "referentiel"]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# Environnement
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Outils
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Corpus brut : non versionné (taille, droits d'auteur)
+corpus/raw/*
+!corpus/raw/.gitkeep
+!corpus/raw/README.md
+
+# Sorties temporaires d'extraction
+corpus/**/*.txt
+# Documents sources (droits d'auteur) : restent locaux, ignores par Git
+ressources/

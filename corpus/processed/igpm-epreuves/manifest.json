@@ -1,0 +1,29 @@
+{
+  "id": "igpm-epreuves",
+  "level": "tous",
+  "discipline": "PCT",
+  "program": {
+    "title": "Formats reamenages des epreuves d evaluation PCT (IGPM)",
+    "edition": "2026-2027",
+    "pages": 9,
+    "source": "corpus/raw/igpm-formats-epreuves.pdf"
+  },
+  "expected_extracts": 2,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "formats-epreuves",
+      "title": "Formats reamenages des epreuves d evaluation PCT (6e  5e, 4e  3e, series C D)",
+      "type": "format-epreuve",
+      "file": "extraits/01-formats-epreuves.json",
+      "status": "draft"
+    },
+    {
+      "id": "exemples-epreuves",
+      "title": "Exemples d epreuves types (BEPC et BAC, matieres chimie et physique)",
+      "type": "exemples-epreuves",
+      "file": "extraits/02-exemples-epreuves.json",
+      "status": "draft"
+    }
+  ]
+}

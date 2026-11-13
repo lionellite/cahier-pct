@@ -1,0 +1,50 @@
+{
+  "id": "pct-1e-prog",
+  "level": "1e",
+  "discipline": "PCT",
+  "program": {
+    "title": "Programme d’etudes par competences PCT 1re C+D — programme seul",
+    "edition": "par competences",
+    "pages": 98,
+    "source": "corpus/raw/programme-pct-1e-prog.pdf"
+  },
+  "expected_extracts": 5,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "1e-prog-orientations-generales",
+      "title": "Orientations generales",
+      "type": "orientations-generales",
+      "file": "extraits/01-prog-orientations-generales.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-prog-competences-transversales",
+      "title": "Competences transversales",
+      "type": "competences-transversales",
+      "file": "extraits/02-prog-competences-transversales.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-prog-competences-transdisciplinaires",
+      "title": "Competences transdisciplinaires",
+      "type": "competences-transdisciplinaires",
+      "file": "extraits/03-prog-competences-transdisciplinaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-prog-competences-disciplinaires",
+      "title": "Competences disciplinaires",
+      "type": "competences-disciplinaires",
+      "file": "extraits/04-prog-competences-disciplinaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-prog-connaissances-notionnelles",
+      "title": "Connaissances notionnelles et techniques par competence",
+      "type": "contenus-formation",
+      "file": "extraits/05-prog-connaissances-notionnelles.json",
+      "status": "draft"
+    }
+  ]
+}

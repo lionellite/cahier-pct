@@ -1,0 +1,21 @@
+{
+  "id": "3e-orientations-generales-demo",
+  "level": "3e",
+  "type": "orientations-generales",
+  "title": "Orientations générales — démonstration",
+  "status": "demo",
+  "version": 1,
+  "source": {
+    "document": "Programme officiel PCT 3e (démonstration)",
+    "edition": "2020",
+    "pages": [3, 4],
+    "url": null
+  },
+  "metadata": {
+    "tags": ["orientations", "finalités", "démarche"],
+    "competences": [],
+    "capacites": [],
+    "criteres": []
+  },
+  "content": "[EXEMPLE DE DÉMONSTRATION — à remplacer par le texte officiel du programme]\n\nLes orientations générales rappellent que l'enseignement de la PCT vise à développer chez l'élève une culture scientifique et technique, l'esprit critique et la capacité à résoudre des problèmes concrets à partir de situations de la vie courante.\n\nLa démarche pédagogique recommandée part de l'observation d'une situation, formule des hypothèses, conduit une activité expérimentale ou documentaire, puis institutionnalise les savoirs et évalue les acquis.\n\nCet extrait est un texte de démonstration : il ne reprend pas le libellé du programme certifié."
+}

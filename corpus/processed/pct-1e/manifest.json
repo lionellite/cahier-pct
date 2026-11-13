@@ -1,0 +1,57 @@
+{
+  "id": "pct-1e",
+  "level": "1e",
+  "discipline": "PCT",
+  "program": {
+    "title": "Guide du programme d’etudes par competences PCT 1re C+D",
+    "edition": "par competences",
+    "pages": 98,
+    "source": "corpus/raw/programme-pct-1e-guide.pdf"
+  },
+  "expected_extracts": 6,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "1e-sa1-energie-mecanique",
+      "title": "SA 1 - L energie mecanique au service du developpement",
+      "type": "situation-apprentissage",
+      "file": "extraits/01-sa1-energie-mecanique.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-sa2-composes-organiques",
+      "title": "SA 2 - Etude de quelques composes organiques et leurs transformations",
+      "type": "situation-apprentissage",
+      "file": "extraits/02-sa2-composes-organiques.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-sa3-source-tension",
+      "title": "SA 3 - Realisation dune source de tension electrique continue stabilisee",
+      "type": "situation-apprentissage",
+      "file": "extraits/03-sa3-source-tension.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-sa4-phenomenes-chimiques",
+      "title": "SA 4 - Explication de quelques phenomenes chimiques par chimie organique",
+      "type": "situation-apprentissage",
+      "file": "extraits/04-sa4-phenomenes-chimiques.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-sa5-temperature-chaleur",
+      "title": "SA 5 - Temperature et chaleur",
+      "type": "situation-apprentissage",
+      "file": "extraits/05-sa5-temperature-chaleur.json",
+      "status": "draft"
+    },
+    {
+      "id": "1e-sa6-vibration-ondes",
+      "title": "SA 6 - Vibration, propagation et interferences du son et de la lumiere",
+      "type": "situation-apprentissage",
+      "file": "extraits/06-sa6-vibration-ondes.json",
+      "status": "draft"
+    }
+  ]
+}

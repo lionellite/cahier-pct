@@ -1,0 +1,22 @@
+{
+  "id": "amenagement-sa-2de",
+  "level": "2de",
+  "discipline": "PCT",
+  "program": {
+    "title": "Amenagement des situations dapprentissage PCT 2de C+D",
+    "edition": "2009 (revisee)",
+    "pages": 2,
+    "source": "corpus/raw/amenagement-sa-2de.pdf"
+  },
+  "expected_extracts": 1,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "2de-amenagement-sa",
+      "title": "Amenagement des situations dapprentissage (tableau synthetique)",
+      "type": "amenagement-sa",
+      "file": "extraits/01-sa.json",
+      "status": "draft"
+    }
+  ]
+}

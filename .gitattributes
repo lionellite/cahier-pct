@@ -1,0 +1,10 @@
+# Normalisation des fins de ligne pour un projet multiplateforme.
+* text=auto eol=lf
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary

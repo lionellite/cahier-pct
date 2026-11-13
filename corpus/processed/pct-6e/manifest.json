@@ -1,0 +1,78 @@
+{
+  "id": "pct-6e",
+  "level": "6e",
+  "discipline": "PCT",
+  "program": {
+    "title": "Guide du programme d’etudes PCT 6e (version certifiee 2020)",
+    "edition": "2020",
+    "pages": 221,
+    "source": "corpus/raw/programme-pct-6e-guide.pdf"
+  },
+  "expected_extracts": 9,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "6e-orientations-generales",
+      "title": "Orientations generales (Avant-propos)",
+      "type": "orientations-generales",
+      "file": "extraits/01-orientations-generales.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-presentation-situations",
+      "title": "Presentation des situations dapprentissage",
+      "type": "section",
+      "file": "extraits/02-presentation-situations.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-sa1-courant-electrique",
+      "title": "SA 1 - Le courant electrique",
+      "type": "situation-apprentissage",
+      "file": "extraits/03-sa1-courant-electrique.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-sa2-lampe-de-poche",
+      "title": "SA 2 - La fabrication dune lampe de poche",
+      "type": "situation-apprentissage",
+      "file": "extraits/04-sa2-lampe-de-poche.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-sa3-combustions-vives",
+      "title": "SA 3 - Quelques combustions vives",
+      "type": "situation-apprentissage",
+      "file": "extraits/05-sa3-combustions-vives.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-sa4-eau-etats",
+      "title": "SA 4 - Leau dans ses differents etats",
+      "type": "situation-apprentissage",
+      "file": "extraits/06-sa4-eau-etats.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-sa5-pollution-air",
+      "title": "SA 5 - La pollution de lair",
+      "type": "situation-apprentissage",
+      "file": "extraits/07-sa5-pollution-air.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-sa6-instrument-son",
+      "title": "SA 6 - La fabrication dun instrument de production de son",
+      "type": "situation-apprentissage",
+      "file": "extraits/08-sa6-instrument-son.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-evaluation-apprentissages",
+      "title": "Evaluation des apprentissages",
+      "type": "critere-evaluation",
+      "file": "extraits/09-evaluation-apprentissages.json",
+      "status": "draft"
+    }
+  ]
+}

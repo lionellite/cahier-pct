@@ -1,0 +1,127 @@
+{
+  "id": "pct-transversal",
+  "level": "tous",
+  "discipline": "PCT",
+  "program": {
+    "title": "Documents transversaux officiels 2025-2026 (progression, inspection, pilotage)",
+    "edition": "2025-2026",
+    "pages": null,
+    "source": null
+  },
+  "expected_extracts": 16,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "suivi-6e",
+      "title": "Suivi de progression PCT 6e 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/01-suivi-6e.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-5e",
+      "title": "Suivi de progression PCT 5e 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/02-suivi-5e.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-4e",
+      "title": "Suivi de progression PCT 4e 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/03-suivi-4e.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-3e",
+      "title": "Suivi de progression PCT 3e 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/04-suivi-3e.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-2de",
+      "title": "Suivi de progression PCT 2des C et D 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/05-suivi-2de.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-1e",
+      "title": "Suivi de progression PCT 1res C et D 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/06-suivi-1e.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-tle-c",
+      "title": "Suivi de progression PCT Tle C 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/07-suivi-tle-c.json",
+      "status": "draft"
+    },
+    {
+      "id": "suivi-tle-d",
+      "title": "Suivi de progression PCT Tle D 2025-2026",
+      "type": "situation-progression",
+      "file": "extraits/08-suivi-tle-d.json",
+      "status": "draft"
+    },
+    {
+      "id": "module-jpnrc",
+      "title": "Module JPNRC PCT 2025-2026",
+      "type": "document-transversal",
+      "file": "extraits/09-module-jpnrc.json",
+      "status": "draft"
+    },
+    {
+      "id": "themes-animation-pedagogique",
+      "title": "Themes d'animation pedagogique PCT (IGPM)",
+      "type": "document-transversal",
+      "file": "extraits/10-themes-animation-pedagogique.json",
+      "status": "draft"
+    },
+    {
+      "id": "calendrier-scolaire-2025-2026",
+      "title": "Calendrier scolaire 2025-2026",
+      "type": "document-transversal",
+      "file": "extraits/11-calendrier-scolaire-2025-2026.json",
+      "status": "draft"
+    },
+    {
+      "id": "arrete-053-manuels-scolaires",
+      "title": "Arrete 053 manuels scolaires 2024-2026",
+      "type": "document-transversal",
+      "file": "extraits/12-arrete-053-manuels-scolaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "analyse-bepec-2025",
+      "title": "Analyse BEPC 2025 PCT : resultats et epreuves",
+      "type": "analyse-evaluation",
+      "file": "extraits/13-analyse-bepec-2025.json",
+      "status": "draft"
+    },
+    {
+      "id": "analyse-bac-2025",
+      "title": "Analyse BAC 2025 PCT : resultats et epreuves",
+      "type": "analyse-evaluation",
+      "file": "extraits/14-analyse-bac-2025.json",
+      "status": "draft"
+    },
+    {
+      "id": "dispositif-mpr-2025",
+      "title": "Dispositif MPR actualise 2025 (PCT)",
+      "type": "document-transversal",
+      "file": "extraits/15-dispositif-mpr-2025.json",
+      "status": "draft"
+    },
+    {
+      "id": "innovations-pedagogiques-2025",
+      "title": "Fiche presentation innovations pedagogiques 2025",
+      "type": "document-transversal",
+      "file": "extraits/16-innovations-pedagogiques-2025.json",
+      "status": "draft"
+    }
+  ]
+}

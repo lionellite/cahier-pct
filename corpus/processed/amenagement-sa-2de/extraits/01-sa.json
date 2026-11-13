@@ -1,0 +1,29 @@
+{
+  "id": "2de-amenagement-sa",
+  "level": "2de",
+  "type": "amenagement-sa",
+  "title": "Amenagement des situations dapprentissage (tableau synthetique)",
+  "status": "draft",
+  "version": 1,
+  "source": {
+    "document": "Amenagement des situations dapprentissage PCT 2de C+D",
+    "edition": "2009 (revisee)",
+    "pages": [
+      1,
+      2
+    ],
+    "url": null
+  },
+  "metadata": {
+    "tags": [
+      "amenagement",
+      "contenus",
+      "outils",
+      "tableau"
+    ],
+    "competences": [],
+    "capacites": [],
+    "criteres": []
+  },
+  "content": "[[PAGE 1]]\nPage 1 sur 2 \n \nLa nouvelle présentation des situations d’apprentissage de s classes de secondes C et D  \nse présente comme l’indique le tableau suivant : \n \nN° \nd’ordre \nTITRES DES SITUATIONS \nD’APPRENTISSAGE \nCONTENUS \nNOTIONNELS \nCOMPETENCES \nDISCIPLINAIRES \nOU \nSTRATEGIES \n1 LE COURANT \nELECTRIQUE DANS LES \nCOMPOSANTS \nELECTRIQUES \n-Courant électrique \ncontinu ; courant alternatif ; \n- Ampèremètre, voltmètre, \nmultimètre et oscilloscope ;  \n- Tension électrique \ncontinue, tensions \nélectrique variables. \n-Dipôles passifs : résistor, \nphoto-résistor, thermistor, \nvaristor, diode au silicium et \ndiode zener ; photodiode \n-  \n- dipôles actifs : \ngénérateur ; \n- point de fonctionnement \nd’un circuit. \nCD 1 \n2 LA MATIERE ET SES \nTRANSFORMATIONS  \n- Elément chimique, \natomes, électrons, noyau \n(protons et neutrons) ;  \n- classification périodique ; \n- molécule et liaison \ncovalente ; \n- ions monoatomiques et \npolyatomiques ;  \n- équation-bilan d’une \nréaction chimique ; \n- quantité de matière : la \nmole. \nCD 1 \n3 LA REALISATION D’UN \nMONTAGE \nELECTRONIQUE \n- Etude expérimentale du \ntransistor  \n- Amplificateur opérationnel  \n- Les capteurs (capteurs \nd’actions mécaniques : \nmicrophones ; capteurs de \nlumière : photorésistance et \nphotodiode ; capteurs \nthermiques : thermistance \net couple thermoélectrique) \n-Exemples de montages \nélectriques : dispositif de \nprotection contre le vol et \ndétecteur de niveau d’eau  \n \nPEDAGOGIE \nPAR LE PROJET \n \n \nCD1 \nCD 2 \nCD 3\n\n[[PAGE 2]]\nPage 2 sur 2 \n \n4 LES IONS EN SOLUTION \nAQUEUSE \n-Chlorure de sodium ; \n- solutions acides : acide \nchlorhydrique ; \n- solutions basiques : \nsolution d’hydroxyde de \nsodium ; \n- réaction entre la solution \nd’acide chlorhydrique et la \nsolution d’hydroxyde de \nsodium ; \n- tests d’identification des \nions : chlorure, argent, \nsulfate, nitrate, fer II et fer \nIII, cuivre II, zinc, \nAluminium. \nCD1 \n5 \n \n \n \n \n \nLES CHOCS ET \nCOLLISIONS ENTRE \nSOLIDES EN \nMOUVEMENT \n \n \n \n- Mouvement ; \n- centre d’inertie, principe \nde l’inertie ; \n- vecteur quantité de \nmouvement d’un solide ; \n- conservation du vecteur \nquantité de mouvement \nd’un système isolé  \nCD 1 \n \n \n6 LA POLLUTION DES \nEAUX SUPERFICIELLES \nET DE LA NAPPE \nPHREATIQUE \nAnalyse des eaux pour \nprendre position face à \nl’utilisation de certains \nproduits chimiques. \nCD 3"
+}

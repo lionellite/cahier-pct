@@ -1,0 +1,64 @@
+{
+  "id": "pct-6e-prog",
+  "level": "6e",
+  "discipline": "PCT",
+  "program": {
+    "title": "Programme d’etudes PCT 6e (version certifiee 2020) — programme seul",
+    "edition": "2020",
+    "pages": 102,
+    "source": "corpus/raw/programme-pct-6e-prog.pdf"
+  },
+  "expected_extracts": 7,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "6e-prog-orientations-generales",
+      "title": "Orientations generales",
+      "type": "orientations-generales",
+      "file": "extraits/01-prog-orientations-generales.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-prog-competences-transversales",
+      "title": "Competences transversales",
+      "type": "competences-transversales",
+      "file": "extraits/02-prog-competences-transversales.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-prog-competences-transdisciplinaires",
+      "title": "Competences transdisciplinaires",
+      "type": "competences-transdisciplinaires",
+      "file": "extraits/03-prog-competences-transdisciplinaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-prog-competences-disciplinaires",
+      "title": "Competences disciplinaires",
+      "type": "competences-disciplinaires",
+      "file": "extraits/04-prog-competences-disciplinaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-prog-presentation-situations",
+      "title": "Presentation des situations dapprentissage",
+      "type": "section",
+      "file": "extraits/05-prog-presentation-situations.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-prog-contenus-formation",
+      "title": "Contenus de formation planifies",
+      "type": "contenus-formation",
+      "file": "extraits/06-prog-contenus-formation.json",
+      "status": "draft"
+    },
+    {
+      "id": "6e-prog-repertoire-tp",
+      "title": "Repertoire des Travaux Pratiques",
+      "type": "repertoire-tp",
+      "file": "extraits/07-prog-repertoire-tp.json",
+      "status": "draft"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2de-sa6-objet-mecanique",
+  "level": "2de",
+  "type": "situation-apprentissage",
+  "title": "SA 6 - Analyse structurelle du fonctionnement dun objet mecanique",
+  "status": "draft",
+  "version": 1,
+  "source": {
+    "document": "Guide pedagogique PCT 2de C+D (version revisee)",
+    "edition": "2009 (revisee)",
+    "pages": [
+      83,
+      84,
+      85,
+      86,
+      87,
+      88
+    ],
+    "url": null
+  },
+  "metadata": {
+    "tags": [
+      "technologie",
+      "mecanique",
+      "SA6"
+    ],
+    "competences": [],
+    "capacites": [],
+    "criteres": []
+  },
+  "content": "[[PAGE 83]]\nOrientations générales \n \nGuide du programme d’études  Révisé 2nde C&D                                      \n85 \nSITUATION D’APPRENTISSAGE N° 6 \n(PROJET 2) \nTitre : Analyse structurelle du fonctionnement d’un objet mécanique \n1. Eléments de planification \n1.1. Durée : 7 X 2 H \n1.2. Connaissances et techniques \n \nDomaine :   mécanique  \nConnaissances et techniques Indications pédagogiques et \ncommentaires \nConnaissances et techniques \nexigibles (évaluation) \n. La force \n. Action mécanique d’un \nsystème sur un autre \n- Exemples d’actions \nmécaniques  \n. Forces de contact (frottement \ncompris) \n. Forces à distance (Poids d’un \ncorps). \n- Relation entre force appliquée \net allongement d’un ressort. \n- Interaction. \n2. Condition d’équilibre d’un \nsolide. \n- Exemples d’équilibres d’un \nsolide dans les cas  suivants : \n. Sous l’action de deux forces ; \n. Sous l’action de trois forces \nnon parallèles ; \n. Sous l’action de deux forces \nappliquées, le solide étant \nsusceptible de tourner autour \nd’un axe fixe. \n- Cas d’un solide en équilibre \ndans un fluide  (poussée \nd’Archimède).. \n  \nC’est en fonction des spécificités \nde l’environnement de l’élève \nque le choix du projet  se fera .Il \npeut s’agir d’une fabrication \ncomme d’une démarche \nd’analyse structurelle s’appuyant \nsur des schémas et la \njustification de tel ou tel autre \naspect  théorique de \nl’équilibre d’un objet : treuil, \ngrue motorisée ou non , \ndécortiqueuse  de riz  ou \nd’arachides \n \nUn aspect particulier sera mis \nsur la résolution analytique des \nproblèmes d’équilibre, la \nrésolution graphique ayant fait  \nl’objet d’apprentissage en classe \nde troisième. Cette résolution \ngraphique devra servir de point \nde départ et au besoin sera \nrenforcée. \n \n \n \n \nL’utilisation des connaissances \net techniques (les lois de \nl’équilibre d’un solide) pour \nexpliquer des situations \nd’équilibre  \nLe  projet individuel en \nréinvestissement. \n \n \n \n \n \n \n2. LES ANNEXES DE LA SA 6 \n I/ Forces \nActivité 1  Mise en évidence des effets de la force \nObservation des situations en vue de mettre en évidence les effets des forces  \n- Footballeur qui frappe une balle arrêtée \n- Footballeur qui arrête une balle \n- Footballeur qui dévie la balle de sa trajectoire \n- Déformation d’un ressort (ou élastique)  \n- Corps en équilibre sur plan horizontal \nActivité  2  Mesure de l’intensité d’une force (relation entre force et allongement d’un ressort) \nUtilisation d’un dynamomètre pour mesurer l’intensité de quelques forces.  \nF= k (l – lo) \nF en N, l et lo   en m k en N/m (N.m-1)\n\n[[PAGE 84]]\nOrientations générales \n \nGuide du programme d’études  Révisé 2nde C&D                                      \n86 \nActivité 3    Catégories de forces \n classer les forces en cause dans les situations ci-dessous  schématisées en deux catégories : \no . Forces de contact \no . Forces à distance (ou forces de  champ) \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n II/ Equilibre d’un solide soumis à deux forces \nUtiliser le panneau  de démonstration. \nNB : À défaut de panneau, utiliser des photos et/ou dessin des livres Tomasino….\n\n[[PAGE 85]]\nOrientations générales \n \nGuide du programme d’études  Révisé 2nde C&D                                      \n87\n\n[[PAGE 86]]\nOrientations générales \n \nGuide du programme d’études  Révisé 2nde C&D                                      \n88\n\n[[PAGE 87]]\nOrientations générales \n \nGuide du programme d’études  Révisé 2nde C&D                                      \n89\n\n[[PAGE 88]]\nOrientations générales \n \nGuide du programme d’études  Révisé 2nde C&D                                      \n90 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nConsidérons une plaque de centre de gravité G, mobile autour d’un \naxe (Δ) horizontal, passant par G(fig.12). \nLa plaque en équilibre, est soumise à plusieurs forces extérieures : \n Son poids \n  dont le moment par rapport à l’axe (Δ)  est nul \npuisque \n rencontre cet axe \n La réaction \n  de l’axe (Δ) qui, pour la même raison, a un \nmoment nul par rapport à (Δ) ; \n  Les forces  \n  , \n  et \n   qui , seules ont un effet de \nrotation   par raport à l’axe (Δ)."
+}

@@ -1,0 +1,42 @@
+{
+  "_comment": "Modèle de découpage. Copier en headings.json et adapter les motifs au programme réel. Chaque section devient un extrait. Les motifs sont des expressions régulières appliquées au texte extrait (insensibles à la casse).",
+  "document": {
+    "title": "Programme officiel de Physique-Chimie-Technologie — classe de 3e",
+    "edition": "2020",
+    "pages": 118,
+    "source": "corpus/raw/programme-pct-3e.pdf"
+  },
+  "expected_extracts": 32,
+  "sections": [
+    {
+      "id": "3e-orientations-generales",
+      "title": "Orientations générales",
+      "type": "orientations-generales",
+      "start": "ORIENTATIONS\\s+G[EÉ]N[EÉ]RALES"
+    },
+    {
+      "id": "3e-competences-transversales",
+      "title": "Compétences transversales",
+      "type": "competence-transversale",
+      "start": "COMP[EÉ]TENCES\\s+TRANSVERSALES"
+    },
+    {
+      "id": "3e-competences-transdisciplinaires",
+      "title": "Compétences transdisciplinaires",
+      "type": "competence-transdisciplinaire",
+      "start": "COMP[EÉ]TENCES\\s+TRANSDISCIPLINAIRES"
+    },
+    {
+      "id": "3e-competences-disciplinaires",
+      "title": "Compétences disciplinaires",
+      "type": "competence-disciplinaire",
+      "start": "COMP[EÉ]TENCES\\s+DISCIPLINAIRES"
+    },
+    {
+      "id": "3e-situations-apprentissage",
+      "title": "Situations d'apprentissage",
+      "type": "situation-apprentissage",
+      "start": "SITUATIONS\\s+D.APPRENTISSAGE"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "pct-2de-prog",
+  "level": "2de",
+  "discipline": "PCT",
+  "program": {
+    "title": "Programme d’etudes PCT 2de C+D (version revisee) — programme seul",
+    "edition": "2009 (revisee)",
+    "pages": 99,
+    "source": "corpus/raw/programme-pct-2de-prog.pdf"
+  },
+  "expected_extracts": 6,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "2de-prog-orientations-generales",
+      "title": "Orientations generales",
+      "type": "orientations-generales",
+      "file": "extraits/01-generales.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-prog-competences-transversales",
+      "title": "Competences transversales",
+      "type": "competences-transversales",
+      "file": "extraits/02-transversales.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-prog-competences-transdisciplinaires",
+      "title": "Competences transdisciplinaires",
+      "type": "competences-transdisciplinaires",
+      "file": "extraits/03-transdisciplinaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-prog-competences-disciplinaires",
+      "title": "Competences disciplinaires",
+      "type": "competences-disciplinaires",
+      "file": "extraits/04-disciplinaires.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-prog-connaissances-techniques",
+      "title": "Connaissances et techniques",
+      "type": "contenus-formation",
+      "file": "extraits/05-techniques.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-prog-developpement-sa",
+      "title": "Developpement dune situation dapprentissage ou dun projet",
+      "type": "section",
+      "file": "extraits/06-sa.json",
+      "status": "draft"
+    }
+  ]
+}

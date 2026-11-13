@@ -1,0 +1,78 @@
+{
+  "id": "pct-3e",
+  "level": "3e",
+  "discipline": "PCT",
+  "program": {
+    "title": "Programme officiel de Physique-Chimie-Technologie — classe de 3e",
+    "edition": "2020",
+    "pages": 118,
+    "source": "corpus/raw/programme-pct-3e.pdf"
+  },
+  "expected_extracts": 9,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "3e-orientations-generales",
+      "title": "Orientations generales (Avant-propos)",
+      "type": "orientations-generales",
+      "file": "extraits/01-orientations-generales.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-presentation-situations",
+      "title": "Presentation des situations dapprentissage",
+      "type": "section",
+      "file": "extraits/02-presentation-situations.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-sa1-equilibre-solide",
+      "title": "SA 1 - Equilibre dun solide et conversion denergie",
+      "type": "situation-apprentissage",
+      "file": "extraits/03-sa1-equilibre-solide.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-sa2-reactions-chimiques",
+      "title": "SA 2 - Quelques reactions chimiques en solution aqueuse",
+      "type": "situation-apprentissage",
+      "file": "extraits/04-sa2-reactions-chimiques.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-sa3-energie-electrique",
+      "title": "SA 3 - Lenergie electrique, un besoin indispensable",
+      "type": "situation-apprentissage",
+      "file": "extraits/05-sa3-energie-electrique.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-sa4-detecteur-electrolyseur",
+      "title": "SA 4 - Fabrication dun detecteur de courant et dun electrolyseur",
+      "type": "situation-apprentissage",
+      "file": "extraits/06-sa4-detecteur-electrolyseur.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-sa5-combustion-hydrocarbures",
+      "title": "SA 5 - Combustion complete dhydrocarbures et polymérisation",
+      "type": "situation-apprentissage",
+      "file": "extraits/07-sa5-combustion-hydrocarbures.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-sa6-optique",
+      "title": "SA 6 - Loptique au service de lhomme",
+      "type": "situation-apprentissage",
+      "file": "extraits/08-sa6-optique.json",
+      "status": "draft"
+    },
+    {
+      "id": "3e-evaluation-apprentissages",
+      "title": "Evaluation des apprentissages",
+      "type": "critere-evaluation",
+      "file": "extraits/09-evaluation-apprentissages.json",
+      "status": "draft"
+    }
+  ]
+}

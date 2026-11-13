@@ -1,0 +1,113 @@
+{
+  "id": "pct-2de",
+  "level": "2de",
+  "discipline": "PCT",
+  "program": {
+    "title": "Guide pedagogique PCT 2de C+D (version revisee)",
+    "edition": "2009 (revisee)",
+    "pages": 99,
+    "source": "corpus/raw/programme-pct-2de-guide.pdf"
+  },
+  "expected_extracts": 14,
+  "status": "incomplete",
+  "extracts": [
+    {
+      "id": "2de-contenus-notionnels",
+      "title": "Domaines de connaissances et competences disciplinaires",
+      "type": "contenus-notionnels",
+      "file": "extraits/01-notionnels.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-orientations-generales",
+      "title": "Orientations generales",
+      "type": "orientations-generales",
+      "file": "extraits/02-generales.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-association-competences",
+      "title": "Association de competences et plan de developpement",
+      "type": "section",
+      "file": "extraits/03-competences.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-canevas-cd1",
+      "title": "Canevas general des SA de la CD1",
+      "type": "canevas-sa",
+      "file": "extraits/04-cd1.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-canevas-cd2",
+      "title": "Canevas general des SA de la CD2",
+      "type": "canevas-sa",
+      "file": "extraits/05-cd2.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-canevas-cd3",
+      "title": "Canevas general des SA de la CD3",
+      "type": "canevas-sa",
+      "file": "extraits/06-cd3.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa1-courant-electrique",
+      "title": "SA 1 - Le courant electrique dans les composants electriques",
+      "type": "situation-apprentissage",
+      "file": "extraits/07-electrique.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa2-matiere-transformations",
+      "title": "SA 2 - La matiere et ses transformations autour de nous",
+      "type": "situation-apprentissage",
+      "file": "extraits/08-transformations.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa3-montage-electronique",
+      "title": "SA 3 - Realisation dun montage electronique",
+      "type": "situation-apprentissage",
+      "file": "extraits/09-electronique.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa4-solides-mouvement",
+      "title": "SA 4 - Les solides en mouvement autour de nous",
+      "type": "situation-apprentissage",
+      "file": "extraits/10-mouvement.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa5-ions-solutions",
+      "title": "SA 5 - Les ions et les solutions aqueuses ioniques dans la nature",
+      "type": "situation-apprentissage",
+      "file": "extraits/11-solutions.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa6-objet-mecanique",
+      "title": "SA 6 - Analyse structurelle du fonctionnement dun objet mecanique",
+      "type": "situation-apprentissage",
+      "file": "extraits/12-mecanique.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa7-sols-plantation",
+      "title": "SA 7 - Les sols et les besoins des plantes",
+      "type": "situation-apprentissage",
+      "file": "extraits/13-plantation.json",
+      "status": "draft"
+    },
+    {
+      "id": "2de-sa8-pollution-eaux",
+      "title": "SA 8 - La pollution des eaux superficielles et de la nappe phreatique",
+      "type": "situation-apprentissage",
+      "file": "extraits/14-eaux.json",
+      "status": "draft"
+    }
+  ]
+}

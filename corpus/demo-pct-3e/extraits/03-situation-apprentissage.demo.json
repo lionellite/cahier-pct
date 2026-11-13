@@ -1,0 +1,29 @@
+{
+  "id": "3e-situation-apprentissage-demo",
+  "level": "3e",
+  "type": "situation-apprentissage",
+  "title": "Situation d'apprentissage — détermination d'une masse volumique (démonstration)",
+  "status": "demo",
+  "version": 1,
+  "source": {
+    "document": "Programme officiel PCT 3e (démonstration)",
+    "edition": "2020",
+    "pages": [44, 45],
+    "url": null
+  },
+  "metadata": {
+    "tags": ["masse volumique", "situation d'apprentissage", "expérience"],
+    "competences": [
+      "Expliquer la relation entre la masse, le volume et la masse volumique d'un corps."
+    ],
+    "capacites": [
+      "Proposer un protocole de détermination d'une masse volumique.",
+      "Exploiter des résultats de mesure."
+    ],
+    "criteres": [
+      "Pertinence du protocole.",
+      "Exploitation correcte des mesures."
+    ]
+  },
+  "content": "[EXEMPLE DE DÉMONSTRATION — à remplacer par le texte officiel du programme]\n\nSituation : lors d'une séance de travaux pratiques, des élèves disposent d'un solide de forme irrégulière et d'une éprouvette graduée. Ils doivent déterminer la masse volumique du matériau qui le constitue et l'identifier à partir d'un tableau de données.\n\nTâche : proposer un protocole, réaliser les mesures, calculer la masse volumique et conclure.\n\nCet extrait est un texte de démonstration ; la situation officielle et son libellé exact restent à extraire du programme certifié."
+}

@@ -1,0 +1,31 @@
+{
+  "id": "3e-competence-disciplinaire-masse-volumique-demo",
+  "level": "3e",
+  "type": "competence-disciplinaire",
+  "title": "Compétence disciplinaire — masse et volume (démonstration)",
+  "status": "demo",
+  "version": 1,
+  "source": {
+    "document": "Programme officiel PCT 3e (démonstration)",
+    "edition": "2020",
+    "pages": [41, 43],
+    "url": null
+  },
+  "metadata": {
+    "tags": ["masse", "volume", "masse volumique", "mesure", "grandeurs physiques"],
+    "competences": [
+      "Expliquer la relation entre la masse, le volume et la masse volumique d'un corps."
+    ],
+    "capacites": [
+      "Mesurer la masse d'un solide ou d'un liquide à l'aide d'une balance.",
+      "Mesurer le volume d'un solide ou d'un liquide à l'aide d'une éprouvette graduée.",
+      "Calculer la masse volumique d'un corps à partir de sa masse et de son volume."
+    ],
+    "criteres": [
+      "Exactitude des mesures.",
+      "Cohérence des unités.",
+      "Justification du calcul."
+    ]
+  },
+  "content": "[EXEMPLE DE DÉMONSTRATION — à remplacer par le texte officiel du programme]\n\nCompétence disciplinaire : Expliquer la relation entre la masse, le volume et la masse volumique d'un corps.\n\nCapacités :\n- Mesurer la masse d'un solide ou d'un liquide à l'aide d'une balance.\n- Mesurer le volume d'un solide ou d'un liquide à l'aide d'une éprouvette graduée.\n- Calculer la masse volumique d'un corps à partir de sa masse et de son volume.\n\nCritères d'évaluation :\n- Exactitude des mesures.\n- Cohérence des unités.\n- Justification du calcul.\n\nCet extrait est un texte de démonstration destiné à tester la chaîne de récupération. Il ne reprend pas le libellé exact du programme certifié."
+}
