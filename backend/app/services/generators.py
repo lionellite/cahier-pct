@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from collections.abc import Sequence
+
 from ..errors import ApiError
 from ..prompts import context_block, render, system_prompt
 from .corpus import Corpus, Extract
@@ -39,6 +41,28 @@ class GenerationResult:
         }
 
 
+def _page_range(pages: list[Any]) -> str:
+    """Compresses a page list into ranges: [41..77] -> "41-77", [1,2,3,9] -> "1-3, 9"."""
+    numbers = sorted({int(p) for p in pages if str(p).isdigit()})
+    if not numbers:
+        return "n/c"
+    groups: list[list[int]] = [[numbers[0]]]
+    for n in numbers[1:]:
+        if n == groups[-1][-1] + 1:
+            groups[-1].append(n)
+        else:
+            groups.append([n])
+    parts: list[str] = []
+    for group in groups:
+        if len(group) == 1:
+            parts.append(str(group[0]))
+        elif len(group) == 2:
+            parts.append(f"{group[0]}-{group[1]}")
+        else:
+            parts.append(f"{group[0]}-{group[-1]}")
+    return ", ".join(parts)
+
+
 def _citation(extract: Extract) -> dict[str, Any]:
     return {
         "extract_id": extract.id,
@@ -67,8 +91,17 @@ def _citations(hits: list[tuple[Extract, float]]) -> list[dict[str, Any]]:
     return [_citation(extract) for extract, _score in hits]
 
 
-def _level(corpus: Corpus, level: str | None) -> str:
-    return level or str(corpus.manifest.get("level") or "3e")
+def _level(
+    corpus: Corpus, level: str | None, extracts: Sequence[Extract] | None = None
+) -> str:
+    """Niveau explicite > niveau du premier extrait récupéré > manifeste > 3e."""
+    if level:
+        return level
+    if extracts:
+        for extract in extracts:
+            if extract.level and extract.level != "tous":
+                return extract.level
+    return str(corpus.manifest.get("level") or "3e")
 
 
 def _excerpt(text: str, limit: int = 1600) -> str:
@@ -86,8 +119,7 @@ def _mock_extract_section(extract: Extract, *, limit: int = 1600) -> str:
             "",
             _excerpt(extract.content, limit),
             "",
-            f"[Réf : {extract.id} — {extract.title}, p. "
-            f"{'-'.join(map(str, extract.source.get('pages', []))) or 'n/c'}]",
+            f"[Réf : {extract.id} — {extract.title}, p. {_page_range(extract.source.get('pages', []))}]",
         ]
     )
 
@@ -119,7 +151,6 @@ def generate_question(
     top_k: int = 5,
 ) -> GenerationResult:
     hits = corpus.search(question, top_k=top_k)
-
     if not hits:
         return GenerationResult(
             mode="question",
@@ -185,7 +216,7 @@ def generate_fiche(
 ) -> GenerationResult:
     hits = _require_hits(corpus.resolve(competence, top_k=3), competence)
     extracts = [extract for extract, _score in hits]
-    resolved_level = _level(corpus, level)
+    resolved_level = _level(corpus, level, extracts)
 
     if llm.is_live:
         prompt = render(
@@ -251,7 +282,7 @@ def generate_exercices(
 ) -> GenerationResult:
     hits = _require_hits(corpus.resolve(competence, top_k=3), competence)
     extracts = [extract for extract, _score in hits]
-    resolved_level = _level(corpus, level)
+    resolved_level = _level(corpus, level, extracts)
 
     if llm.is_live:
         prompt = render(

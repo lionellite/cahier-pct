@@ -69,7 +69,7 @@ export function HomePage() {
         <div className="corpus-card-head">
           <div>
             <span className="eyebrow">Base de connaissances</span>
-            <h2>Programme de 3ᵉ</h2>
+            <h2>Programmes officiels PCT</h2>
           </div>
           {corpus && (
             <span className="badge badge-neutral">
@@ -93,8 +93,13 @@ export function HomePage() {
             <p className="muted small">
               {corpus.validated} extrait{corpus.validated > 1 ? 's' : ''} validé
               {corpus.validated > 1 ? 's' : ''} · {corpus.characters.toLocaleString('fr-FR')}{' '}
-              caractères indexés. Le corpus livré est encore un jeu de démonstration :
-              les documents officiels doivent être intégrés et validés.
+              caractères indexés
+              {corpus.corpora && corpus.corpora.length > 1
+                ? ` · ${corpus.corpora.length} corpus : ${corpus.corpora
+                    .map((c) => c.id)
+                    .join(', ')}`
+                : ''}
+              . Les extraits sont en cours de validation pédagogique.
             </p>
           </>
         )}

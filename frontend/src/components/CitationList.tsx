@@ -6,8 +6,22 @@ const TYPE_LABELS: Record<string, string> = {
   'competence-transversale': 'Compétence transversale',
   'competence-transdisciplinaire': 'Compétence transdisciplinaire',
   'competence-disciplinaire': 'Compétence disciplinaire',
+  'competences-transversales': 'Compétences transversales',
+  'competences-transdisciplinaires': 'Compétences transdisciplinaires',
+  'competences-disciplinaires': 'Compétences disciplinaires',
   'situation-apprentissage': "Situation d'apprentissage",
   'critere-evaluation': "Critère d'évaluation",
+  'contenus-formation': 'Contenus de formation',
+  'contenus-notionnels': 'Contenus notionnels',
+  'repertoire-tp': 'Répertoire des travaux pratiques',
+  'canevas-sa': 'Canevas de SA',
+  'amenagement-sa': "Aménagement des SA",
+  'situation-progression': 'Suivi de progression',
+  'analyse-evaluation': 'Analyse d\u2019évaluation',
+  'format-epreuve': "Format d'épreuve",
+  'exemples-epreuves': "Exemples d'épreuves",
+  'document-transversal': 'Document transversal',
+  'section': 'Section',
 }
 
 export function typeLabel(type: string): string {
